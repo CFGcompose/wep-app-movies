@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Awesome Movie Recommender</title>
-  <link rel="stylesheet" href="/static/styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
-
 <body>
-  <h1>{{ title }}</h1>
-  <p>This is a <br>line break</p>
-  <a href="https://www.lyrics.com">Go to the lyrics site!</a>
-  <br>
-  <form action="/recommender">
-  <p>Please rate the following movies on a scale from 0.0 to 5.0:</p>
-  Movie 1:
-  <input type="text" name="movie1" placeholder="0.0 - 5.0"><br>
-  Movie 2:
-  <input type="text" name="movie2" placeholder="0.0 - 5.0"><br>
-  Movie 3:
-  <input type="text" name="movie3" placeholder="0.0 - 5.0"><br>
-  Movie 4:
-  <input type="text" name="movie4" placeholder="0.0 - 5.0"><br>
-  Movie 5:
-  <input type="text" name="movie5" placeholder="0.0 - 5.0"><br>
-  <input type="submit">
-</form>
-</body>
+    <img src="https://storage.googleapis.com/afs-prod/media/e53811360eed4b8ba26b5f635d703a7c/3000.jpeg" width="200px" height="200px">
+    <h1>Welcome the my movie page by {{name}}</h1>
+    
+    <p>Lets Show from movies for watching tonight</p>
+    <form action = '/recommend'>
+        <select name="algo">
+        <option value="Random">Random</option>
+        <option value="NMF">NMF</option>
+        <option value="Cosine similarity">Cosine similarity</option>
+        </select>
+        <br>
+        {% for indx in range(3) %}
+        <input type="text" name="title" placeholder="Enter movie name" required list="movie_lst">
+        <input type="number" name="Ratings" placeholder="1-5" min="1" max="5" required>
+        <br><br>
+        {% endfor %}
+        <button type="submit">Show Recom</button>   
+    </form>
 
+    <datalist id="movie_lst">
+        {%for mov in movies%}
+        <option value="{{mov}}"></option>
+        {%endfor%}
+    </datalist>
+    <!-- <a href="/recommend">Show recommendation</a> -->
+</body>
 </html>
