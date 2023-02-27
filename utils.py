@@ -18,7 +18,7 @@ def movie_to_id(string_titles):
     '''
     converts movie title to id for use in algorithms'''
     
-    movieID = movies.set_index('title').loc[string_titles]['movieid']
+    movieID = movies.set_index('title').loc[string_titles]['movieId']
     movieID = movieID.tolist()
     
     return movieID
@@ -27,7 +27,7 @@ def id_to_movie(movieID):
     '''
     converts movie Id to title
     '''
-    rec_title = movies.set_index('movieid').loc[movieID]['title']
+    rec_title = movies.set_index('movieId').loc[movieID]['title']
     
     return rec_title
 
